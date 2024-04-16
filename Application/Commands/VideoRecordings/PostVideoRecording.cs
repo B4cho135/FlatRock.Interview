@@ -23,6 +23,7 @@ namespace Application.Commands.VideoRecordings
         //[Required]
         //public IFormFile File { get; set; }
         public byte[] FileBytes { get; set; } = [];
+        public string? SessionId { get; set; }
     }
 
     public class PostVideoRecordingHandler : IRequestHandler<PostVideoRecording, BaseResponseModel>
@@ -53,7 +54,7 @@ namespace Application.Commands.VideoRecordings
                 return _responseFactory.Create(ResponseStatuses.Error, "Could not find associated client");
             }
 
-            await _videoRecordingsRepository.AddVideoRecording(request.FileBytes, client.Id);
+            await _videoRecordingsRepository.AddVideoRecording(request.FileBytes, client.Id, request.SessionId);
 
             return _responseFactory.Create(ResponseStatuses.Success);
         }

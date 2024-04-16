@@ -12,5 +12,6 @@ namespace Domain.Entities
     {
         [Column(TypeName = "bytea")]
         public byte[] VideoRecording { get; set; } = [];
+        public string? SessionId { get; set; }
     }
 }
