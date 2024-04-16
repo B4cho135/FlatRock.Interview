@@ -1,11 +1,13 @@
 ﻿using Application.Commands.Photos;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PhotosController : ControllerBase
     {
         private readonly IMediator _mediator;
