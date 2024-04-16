@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    [Table("VideoRecordings", Schema = "public")]
-    public class VideoRecordingEntity : BaseEntity<int>
+    [Table("Photos", Schema = "public")]
+    public class PhotoEntity : BaseEntity<int>
     {
-        [Column(TypeName = "bytea")]
-        public byte[] VideoRecording { get; set; } = [];
+        public byte[] Photo { get; set; } = [];
         public string? SessionId { get; set; }
     }
 }

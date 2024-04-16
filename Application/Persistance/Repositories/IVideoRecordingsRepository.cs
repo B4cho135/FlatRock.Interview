@@ -9,6 +9,6 @@ namespace Application.Persistance.Repositories
 {
     public interface IVideoRecordingsRepository : IRepository<VideoRecordingEntity, int>
     {
-        Task AddVideoRecording(byte[] recording, int clientId);
+        Task AddVideoRecording(byte[] recording, int clientId, string? sessionId);
     }
 }

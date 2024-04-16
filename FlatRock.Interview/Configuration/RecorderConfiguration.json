@@ -1,0 +1,5 @@
+{
+  "VideoCapture": true,
+  "CapturePhoto": true,
+  "CaptureFrequency": 10
+}
