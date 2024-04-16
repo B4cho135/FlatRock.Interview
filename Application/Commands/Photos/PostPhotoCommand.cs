@@ -16,7 +16,7 @@ namespace Application.Commands.Photos
     public class PostPhotoCommand : IRequest<BaseResponseModel>
     {
         public string? Base64 { get; set; }
-        public string SessionId { get; set; }
+        public string? SessionId { get; set; }
     }
 
     public class PostPhotoCommandHandler : IRequestHandler<PostPhotoCommand, BaseResponseModel>
@@ -37,16 +37,24 @@ namespace Application.Commands.Photos
                 return _responseFactory.Create(ResponseStatuses.Error, "File is empty");
             }
 
-
-            var bytea = System.Convert.FromBase64String(request.Base64);
-
-            await _photosRepo.CreateAsync(new PhotoEntity()
+            try
             {
-                Photo = bytea,
-                SessionId = request.SessionId,
-            });
+                var bytea = Convert.FromBase64String(request.Base64.Replace("data:image/png;base64,",""));
 
-            return _responseFactory.Create(ResponseStatuses.Success);
+                await _photosRepo.CreateAsync(new PhotoEntity()
+                {
+                    Photo = bytea,
+                    SessionId = request.SessionId,
+                });
+
+                return _responseFactory.Create(ResponseStatuses.Success);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
         }
     }
 }

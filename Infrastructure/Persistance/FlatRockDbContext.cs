@@ -16,6 +16,7 @@ namespace Infrastructure.Persistance
         public DbSet<ClientEntity> Clients { get; set; }
         public DbSet<VideoRecordingEntity> VideoRecords { get; set; }
         public DbSet<ClientRecordingEntity> ClientRecordings { get; set; }
+        public DbSet<PhotoEntity> Photos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
